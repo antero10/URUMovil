@@ -1,0 +1,40 @@
+<div class="table-responsive">
+<table class="table table-bordered">
+<thead>
+	<tr>
+	<td>Lunes</td>
+	<td>Martes</td>
+	<td>Miercoles</td>
+	<td>Jueves</td>
+	<td>Viernes</td>
+	<td>Sabado</td>
+	</tr>
+</thead>
+	
+	<tbody>
+		<tr>
+		<td ng-repeat="i in range(6) track by $index">
+			{{setIndex($index)}}
+			<table class="table table-striped">
+				<tr ng-repeat="course in courses">
+				<td ng-if="course.dia == getIndex()">
+					<span class="label label-default">{{course.descripcion}}</span><br>
+					<span class="label label-info">{{course.inicio}} - {{course.fin}}</span><br>
+					<span class="label label-primary">{{course.salon}}</span>
+				</td>
+
+					
+					
+				</td>
+					
+					
+			</table>
+
+		</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+
+

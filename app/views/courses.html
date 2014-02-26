@@ -1,0 +1,21 @@
+<div class="form-group">
+    		<input type="text" class="form-control" placeholder="Buscar" ng-model='search' autofocus>
+  		</div>
+	<table class="table table-striped">
+		<tr>
+			<td>Periodo</td>
+			<td>Codigo</td>
+			<td>Materia</td>
+			<td>Nota</td>
+		</tr>
+		<tr ng-repeat="course in courses | filter:search">
+		<td><span class="label label-default">{{course.semester}}</span></td>
+		<td><span class="label label-info">{{course.code}}</span></td>
+		<td><span class="label label-primary">{{course.name}}</span></td>
+		<td ng-if="course.qualification<10"><span class="label label-danger">0{{course.qualification}}</span></td>
+		<td ng-if="course.qualification>=10"><span class='label label-success'>{{course.qualification}}</span></td>
+		</tr>
+	</table>
+	
+
+
