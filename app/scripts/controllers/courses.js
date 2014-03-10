@@ -21,6 +21,9 @@ var courses = [{
 	'qualification':9
 }]
 angular.module('tesisApp')
-  .controller('CoursesCtrl', function ($scope,$http) {
-    	$scope.courses = courses;
+  .controller('CoursesCtrl', function ($scope,$http,$cookieStore) {
+    	$http.get('../serverSide/courses.php',{params:{user:$cookieStore.get('user')}}).success(function(data){
+    		
+    		$scope.courses = data;
+    	});
   });

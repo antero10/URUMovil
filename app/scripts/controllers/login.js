@@ -6,23 +6,23 @@ angular.module('tesisApp')
         if(typeof id =='undefined' || typeof pass =='undefined'){
             $('#alert').show("slow");
              setTimeout(function() {
-                $('#alertInfo').hide('slow');
+                $('#alert').hide('slow');
             }, 3000);
         }
         else{
-            $location.path("/student")
-            /*
-            $http({
-            method: "POST",
-            url:'../serverSide/index.php/login',
-            data:{id:id,pass:pass}
-            }).success(function(data){
+            $http.post("../serverSide/login.php",{'id':id,'pass':pass}).success(function(data){
+                console.log('Entrando...');
+                $cookieStore.put('user',id);
+                $location.path('/student');
+            }).error(function(data){
+                console.log(id);
+                console.log(pass);
                 console.log(data);
-                $location.path("/student");
-             }).error(function(data){
-                console.log(data);
-            });
-             */
+                $('#alertDanger').show('slow');
+                setTimeout(function() {
+                    $('#alertDanger').hide('slow');
+                 }, 3000);
+            })
             
 
         }

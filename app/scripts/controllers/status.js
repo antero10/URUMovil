@@ -7,5 +7,8 @@ var balances =[{
 angular.module('tesisApp')
   .controller('StatusCtrl', function ($scope) {
   	$scope.balances = balances
+  	$scope.close() = function(){
+  		console.log('hola');
+  	}
     
   });
