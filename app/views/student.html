@@ -3,18 +3,11 @@
     <img src="images/logouru.png" alt="" id='logo' class="img-responsive" alt="Responsive image">
   </div>
 	<ul class="thumbnails">
-    		<a href="#/courses" class="thumbnail">
-      			<img src='images/yeoman.png' alt="">
+    		<a ng-repeat='option in options'href="{{option.link}}" class="thumbnail">
+      			<img src='{{option.img}}' alt="">
     		</a>
-  			<a href="#/status" class="thumbnail">
-  			<img src="images/yeoman.png" alt="">
-  			</a>
-  			<a href="#/schedule" class="thumbnail">
-  			<img src="images/yeoman.png" alt="">
-  			</a>
-
 	</ul>
-  <ul class="pager">
+<ul class="pager">
   <li class="previous"><a href="#/">&larr; Volver</a></li>
 </ul>
 

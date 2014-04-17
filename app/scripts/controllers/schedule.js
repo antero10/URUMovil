@@ -7,17 +7,14 @@ angular.module('tesisApp')
     };
     $scope.setIndex= function(index2){
         index = index2 +1;
-    };
+    }; 
     $scope.getIndex = function(){
         return index;
     };
-    $http.get('../serverSide/schedule.php',{params:{user:$cookieStore.get('user')}}).success(function(data){
+    $http.get('../serverSide/index.php/getSchedule',{params:{user:$cookieStore.get('user')}}).success(function(data){
         console.log(data);
         $scope.courses = data;
     }).error(function(data){
-         $('#alertDanger').show('slow');
-                setTimeout(function() {
-                    $('#alertDanger').hide('slow');
-                 }, 3000);
+       
     });
   });

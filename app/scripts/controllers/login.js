@@ -10,19 +10,13 @@ angular.module('tesisApp')
             }, 3000);
         }
         else{
-            $http.post("../serverSide/login.php",{'id':id,'pass':pass}).success(function(data){
-                console.log('Entrando...');
-                $cookieStore.put('user',id);
-                $location.path('/student');
-            }).error(function(data){
-                console.log(id);
-                console.log(pass);
+            $http({
+                method:'GET',
+                url:'http://192.168.80.100/slim.php/get',
+                headers:{'Content-Type':'application/json'}
+            }).success(function(data){
                 console.log(data);
-                $('#alertDanger').show('slow');
-                setTimeout(function() {
-                    $('#alertDanger').hide('slow');
-                 }, 3000);
-            })
+            });
             
 
         }
