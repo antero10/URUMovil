@@ -6,11 +6,8 @@ angular.module('tesisApp', [
   'ngSanitize',
   'ngRoute'
 ])
-.config(['$httpProvider',function ($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
- }]) 
-  .config(function ($routeProvider) {
+
+  .config(function ($routeProvider,$httpProvider,$resourceProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/login.html',
@@ -35,4 +32,8 @@ angular.module('tesisApp', [
       .otherwise({
         redirectTo: '/'
       });
+      //$httpProvider.defaults.withCredentials = true;
+      $httpProvider.defaults.headers.put['Content-Type'] = $httpProvider.defaults.headers.post['Content-Type'] =
+        'application/x-www-form-urlencoded; charset=UTF-8';
+      delete $httpProvider.defaults.headers.common["X-Requested-With"];
   });

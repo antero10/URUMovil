@@ -2,9 +2,11 @@
 	<h2 class="form-signin-heading" id="tittle"><img src="images/logouru.png" alt="" id="logo" class="img-responsive" alt="Responsive image"></h2>
 	<h3><p class="text-center">Estado de cuenta</p></h3>
 	<br>	
-	<p class="text-center"ng-repeat='balance in balances'>
-		Saldo Actual: {{balance.balance}}<br>
-		Deuda Total: <span class="label label-danger">{{balance.debt}}</span>
+	<p class="text-center">
+		Saldo Actual: <span class="label label-success">{{charge}}</span><br>
+		Deuda Vencida: <span class="label label-danger">{{debt}}</span><br>
+		Deuda Total: <span class="label label-danger">{{totalDebt}}</span>
+	</p>
 <ul class="pager">
   <li class="previous"><a href="#/student">&larr; Volver</a></li>
 </ul>

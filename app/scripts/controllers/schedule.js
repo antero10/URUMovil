@@ -1,7 +1,7 @@
 'use strict';
 var index;
 angular.module('tesisApp')
-  .controller('ScheduleCtrl', function ($scope,$http,$cookieStore){
+  .controller('ScheduleCtrl', function ($scope,$http,$cookieStore,schedule){
     $scope.range = function(n) {
         return new Array(n);
     };
@@ -11,10 +11,12 @@ angular.module('tesisApp')
     $scope.getIndex = function(){
         return index;
     };
-    $http.get('../serverSide/index.php/getSchedule',{params:{user:$cookieStore.get('user')}}).success(function(data){
-        console.log(data);
-        $scope.courses = data;
-    }).error(function(data){
-       
+   
+    schedule.get({
+        id:$cookieStore.get('id')}).$promise.then(function(data){
+            console.log(data.Schedule);
+            $scope.courses = data.Schedule;
+    }).catch(function(data){
+
     });
   });

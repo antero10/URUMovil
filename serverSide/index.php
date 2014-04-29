@@ -12,17 +12,15 @@ $app = new \Slim\Slim();
 
 
 // GET route
-$app->post('/login',function(){
+$app->post('/login/:id',function($id) use ($app){
         /*
             Esta solicitud recibira estudiante y contraseña devuelve 200 si paso
             y 400 cuando no
          */
+        $json = array("id"=>$id);
+        $app->response->write(json_encode($json));
         
-        $DBCRA = array("module"=>Configuracion::alfa, "sv"=>true,"username"=>Configuracion::dbuser,"password"=>Configuracion::dbpasswd);
-        $dbTicket = Database::getConnectTicket($DBCRA);
-        $query = 'SELECT c.periodo as "semester", c.materia as "code", m.descripcion as "name", n.nota as "qualification" FROM notas n, cursos c, materias m WHERE n.curso = c.curso and c.materia = m.codigo and n.estudiante = 19415408';
-        $rs = Database::execute($dbTicket,$query);  
-        echo json_decode($rs);      
+        
     }
 );
 $app->get('/getCourses',function(){

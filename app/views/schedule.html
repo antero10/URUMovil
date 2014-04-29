@@ -1,3 +1,5 @@
+<h2 class="form-signin-heading" id="tittle"><img src="images/logouru.png" alt="" id="logo" class="img-responsive" alt="Responsive image"></h2>
+<br>
 <div class="alert alert-danger" id='alertDanger' style="display:none">Error De Conexion intentelo mas tarde</div>
 <div class="table-responsive">
 <table class="table table-bordered">
@@ -18,10 +20,10 @@
 			{{setIndex($index)}}
 			<table class="table table-striped">
 				<tr ng-repeat="course in courses">
-				<td ng-if="course.dia == getIndex()">
-					<span class="label label-default">{{course.descripcion}}</span><br>
-					<span class="label label-info">{{course.inicio}} - {{course.fin}}</span><br>
-					<span class="label label-primary">{{course.salon}}</span>
+				<td ng-if="course.day == getIndex()">
+					<span class="label label-default">{{course.name}}</span><br>
+					<span class="label label-info">{{course.start}} - {{course.end}}</span><br>
+					<span class="label label-primary">{{course.classroom}}</span>
 				</td>			
 				</td>
 			</table>
