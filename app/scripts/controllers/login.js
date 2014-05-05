@@ -12,6 +12,8 @@ angular.module('tesisApp')
             }, 3000);
         }
         else{
+          $location.path('/student');
+        /*
             login.save({
               id:id,
               pass:window.btoa(pass)
@@ -24,7 +26,7 @@ angular.module('tesisApp')
                 $('#alertErr').hide('slow');
             }, 3000);
             });
-           /*
+           
            $http.post("http://192.168.1.128/urumovil/slim.php/login/19415408",{withCredential: true}).success(function(data){
                 console.log(data);
            });

@@ -1,4 +1,4 @@
-<?php
+r<?php
 
 require_once 'Slim/Slim.php';
 require_once 'Configuracion.php';
@@ -9,7 +9,8 @@ require_once 'Database.php';
 
 $app = new \Slim\Slim();
 
-
+$dbconn = pg_connect("host=localhost dbname=uru user=antero password=19415408")
+    or die('No se ha podido conectar: ' . pg_last_error());
 
 // GET route
 $app->post('/login/:id',function($id) use ($app){

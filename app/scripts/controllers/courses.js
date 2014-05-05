@@ -3,7 +3,7 @@
 angular.module('tesisApp')
   .controller('CoursesCtrl', function ($scope,$http,$cookieStore,courses) {
     	courses.get({
-            id: $cookieStore.get('id')
+            id:19415408
         }).$promise.then(function(data){
             $scope.courses = data.Courses;
         }).catch(function(err){
