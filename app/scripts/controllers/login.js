@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tesisApp')
-  .controller('LoginCtrl', function ($scope,$location,$cookieStore,login) {
+  .controller('LoginCtrl', function ($scope,$location,$cookieStore,$http,login) {
     $scope.button = 'Ingresar';
     
     $scope.login = function(id,pass){
@@ -12,25 +12,21 @@ angular.module('tesisApp')
             }, 3000);
         }
         else{
-          $location.path('/student');
-        /*
-            login.save({
-              id:id,
-              pass:window.btoa(pass)
-            }).$promise.then(function(data){
-              $cookieStore.put('id',id);
-              $location.path('/student');
-            }).catch(function(err){
-              $('#alertErr').show("slow");
+          login.save({id:id,pass:window.btoa(pass)}).$promise.then(function(data){
+            console.log('Login....');
+            console.log(data);
+            window.localStorage.setItem("id",id);
+            $location.path('/student');
+          }).catch(function(err){
+            console.log(err);
+            $('#alertErr').show("slow");
              setTimeout(function() {
                 $('#alertErr').hide('slow');
             }, 3000);
-            });
+          });
            
-           $http.post("http://192.168.1.128/urumovil/slim.php/login/19415408",{withCredential: true}).success(function(data){
-                console.log(data);
-           });
-          */
+          
+          
         }
         
     

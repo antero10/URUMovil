@@ -13,8 +13,9 @@ angular.module('tesisApp')
     };
    
     schedule.get({
-        id:$cookieStore.get('id')}).$promise.then(function(data){
-            console.log(data.Schedule);
+        id:window.localStorage.getItem("id")}).$promise.then(function(data){
+            console.log('Schedule is here!!!');
+            console.log(data);
             $scope.courses = data.Schedule;
     }).catch(function(data){
 

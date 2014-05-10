@@ -2,7 +2,7 @@
 
 angular.module('tesisApp')
   .controller('StudentCtrl', function ($scope,$cookieStore,$location) {
-  	console.log('hola');
+    console.log('Welcome To UruMovil');
   	$scope.options = [{
   		'link' :'#/courses',
   		'img':'images/courses.png'
@@ -13,4 +13,8 @@ angular.module('tesisApp')
   		'link':"#/schedule",
   		'img':'images/schedule.png'
   	}];
+    $scope.closeSession = function(){
+      console.log('Closing....');
+      localStorage.clear();
+    }
   });
