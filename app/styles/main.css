@@ -6,9 +6,11 @@ body {
   padding-bottom: 20px;
   
 }
+
 #tittle{
   text-align: center;
 }
+
 
 #tableRows{
   text-align: center;
@@ -18,6 +20,9 @@ td{
 }
 .page-header{
   text-align: center;
+}
+h1{
+  font-family: bebas-neue;
 }
 h3{
   font-family: bebas-neue;

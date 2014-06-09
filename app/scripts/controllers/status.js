@@ -1,32 +1,44 @@
 'use strict';
 
-
 angular.module('tesisApp')
-  .controller('StatusCtrl', function ($scope,status,$cookieStore) {	
+  .controller('StatusCtrl', function ($scope,status,$cookieStore) {
+    angular.element('#mydiv').show();
   	status.get(
       {id:window.localStorage.getItem("id")}).$promise.then(function(data){
-      console.log('Status is here!');
-  		console.log(data);
-  		//$scope.charge = data.PAYMENT;
-  		var debt = data.LATEPAYMENT - data.PAYMENT
-  		var totalDebt = data.CHARGES - data.PAYMENT;
+      angular.element('#mydiv').hide();
+      console.log(data);
       
+      var totalDebt = data.Status.CHARGES - data.Status.PAYMENT;
+      var amount = data.Status.AMOUNT;
+      var count = 2;
+      $scope.fees = data.Status.fees; 
+      $scope.totalDebt = Math.round(totalDebt);
+      $scope.paymentClass = function( ){
+        if(count<0){
+            count = 2;
+          }
+          if(amount * count <= totalDebt){
+            console.log(amount*count);
+            count--;
+            return 'label label-danger';
+          }
+          else{
+            console.log(amount*count);
+            count--;
+            return 'label label-success';
+          }
+          
+
+      }
 
 
-      if(debt<0){
-        $scope.debt = 0;
-      }
-      else{
-        $scope.debt = Math.round(debt * 100) / 100;
-      }
-      if(totalDebt<0){
-        $scope.totalDebt = 0;
-      }
-      else{
-        $scope.totalDebt = Math.round(totalDebt * 100) / 100;
-      }
   	}).catch(function(err){
   		console.log(err);
+      angular.element('#mydiv').hide();
+      $('#alertDanger').show("slow");
+             setTimeout(function() {
+                $('#alertErr').hide('slow');
+            }, 3000);
   	})
     
   });

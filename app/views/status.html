@@ -1,11 +1,15 @@
-
-	<h2 class="form-signin-heading" id="tittle"><img src="images/logouru.png" alt="" id="logo" class="img-responsive" alt="Responsive image"></h2>
-	<h3><p class="text-center">Estado de cuenta</p></h3>
+<h2 class="form-signin-heading" id="tittle"><img src="images/logouru.png" alt="" id="logo" class="img-responsive" alt="Responsive image"></h2>
+<h3><p class="text-center">Estado de cuenta</p></h3>
 	<br>	
-	<p class="text-center">
-		Deuda Total: <span class="label label-danger">{{totalDebt}}</span><br>
-		Deuda Vencida: <span class="label label-danger">{{debt}}</span>
-	</p>
+	<ol>
+		<li ng-repeat = 'fee in fees track by $index'>
+			<h3><span class = "{{paymentClass()}}">{{fee.date}}</span></h3>
+	</ol>
+<h3><p class="text-center">Deuda Total <span class="label label-danger">{{totalDebt}}</span></p></h3>
+<div id="mydiv" style="display:none" align="center">
+    <img src="images/urumovil.gif"/>
+</div>
+ <div class="alert alert-danger" id='alertDanger' style="display:none">Error en Conexion intentelo mas tarde</div>
 <ul class="pager">
   <li class="previous"><a href="#/student">&larr; Volver</a></li>
 </ul>

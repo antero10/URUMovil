@@ -2,7 +2,7 @@
 
 angular.module('tesisApp')
   .controller('LoginCtrl', function ($scope,$location,$cookieStore,$http,login) {
-    $scope.button = 'Ingresar';
+   
     
     $scope.login = function(id,pass){
         if(typeof id =='undefined' || typeof pass =='undefined'){
@@ -12,13 +12,16 @@ angular.module('tesisApp')
             }, 3000);
         }
         else{
+          angular.element('#mydiv').show();
           login.save({id:id,pass:window.btoa(pass)}).$promise.then(function(data){
+            angular.element('#mydiv').hide();
             console.log('Login....');
             console.log(data);
             window.localStorage.setItem("id",id);
             $location.path('/student');
           }).catch(function(err){
             console.log(err);
+            angular.element('#mydiv').hide();
             $('#alertErr').show("slow");
              setTimeout(function() {
                 $('#alertErr').hide('slow');

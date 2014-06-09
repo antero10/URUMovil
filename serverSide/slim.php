@@ -117,19 +117,12 @@ $app->get(
 		$count= 0;
 		$query = "SELECT DESCRIPCION,COMIENZO,FINAL,SALON,DIA FROM materias m, horarios h, cursos c, configuracion conf, notas n WHERE c.curso = h.curso AND conf.periodopreinscripcion = c.periodo AND c.curso = n.curso AND c.materia = m.codigo AND n.estudiante =$id ORDER BY DIA,COMIENZO";
         $rs = Database::execute($dbTicket, $query);
-		if($rs == 'false'){
-			$app->response->status(404);
-		}
-		else{
-			while($row = Database::nextRegAsso($rs)){
+		while($row = Database::nextRegAsso($rs)){
 			$array[$count] = array("name"=>utf8_encode($row['DESCRIPCION']),"start"=>$row['COMIENZO'],"end"=>utf8_encode($row["FINAL"]),"day"=>$row['DIA'],"classroom"=>$row["SALON"]);
 			$count++;
-			}
-			$result = array("Schedule"=>$array);
-			$app->response->write(json_encode($result));
 		}
-		
-		
+		$result = array("Schedule"=>$array);
+		$app->response->write(json_encode($result));
 	}
 )->via("OPTIONS");
 $app->get(
@@ -167,9 +160,16 @@ $app->get(
 		$rs = Database::execute($dbTicket,$lPaymentQuery);
 		$array = array_merge($array,Database::nextRegAsso($rs));
 		
+		$feeDate = "SELECT CUOTA1 as fee1,CUOTA2 as fee2,CUOTA3 as fee3  from fechascuotas f,configuracion c where f.periodo = c.periodopreinscripcion";
+		$rs = Database::execute($dbTicket,$feeDate);
+		$fees = Database::nextRegAsso($rs);
+		$array = array_merge($array,array("fees"=>array(array('date'=>$fees['FEE1']),array('date'=>$fees['FEE2']),array('date'=>$fees['FEE3']))));
 		
-		//$response = array('Status',$array);
-		$app->response->write(json_encode($array));
+		$monto = "SELECT monto as amount from cargos where estudiante = $id and vencimiento = '".$fees['FEE2']."'";
+		$rs = Database::execute($dbTicket,$monto);
+		$array = array_merge($array,Database::nextRegAsso($rs));
+		$response = array('Status'=>$array);
+		$app->response->write(json_encode($response));
 
 	}
 )->via("OPTIONS");

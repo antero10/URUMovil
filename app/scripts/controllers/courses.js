@@ -2,17 +2,27 @@
 
 angular.module('tesisApp')
   .controller('CoursesCtrl', function ($scope,$cookieStore,courses) {
+        var count = 0;
+        var data;
+        angular.element('#mydiv').show();
     	courses.get({
             id:window.localStorage.getItem("id")
-        }).$promise.then(function(data){
+        }).$promise.then(function(courses){
             console.log('Courses are here');
-            console.log(data);
-            $scope.courses = data.Courses;
+            console.log(courses);
+            angular.element('#mydiv').hide();
+            $scope.courses = courses.Courses;
         }).catch(function(err){
             console.log(err);
-        })
+            angular.element('#mydiv').hide();
+            $('#alertDanger').show("slow");
+             setTimeout(function() {
+                $('#alertErr').hide('slow');
+            }, 3000);
+            
+        });
     	$scope.qualificationClass = function(qualification){
-    		
+    		console.log(count++);
     		if(qualification.trim() == 'DIF' || qualification.trim() == 'I'|| qualification.trim() == 'SI'){
     			
     			return 'label label-warning';
