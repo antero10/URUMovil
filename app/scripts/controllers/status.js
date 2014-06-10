@@ -12,7 +12,8 @@ angular.module('tesisApp')
       var amount = data.Status.AMOUNT;
       var count = 2;
       $scope.fees = data.Status.fees; 
-      $scope.totalDebt = Math.round(totalDebt);
+      $scope.totalDebt = totalDebt.toFixed(2);
+      $scope.latePayment = (data.Status.LATEPAYMENT - data.Status.PAYMENT).toFixed(2);
       $scope.paymentClass = function( ){
         if(count<0){
             count = 2;

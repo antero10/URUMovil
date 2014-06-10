@@ -5,7 +5,9 @@
 		<li ng-repeat = 'fee in fees track by $index'>
 			<h3><span class = "{{paymentClass()}}">{{fee.date}}</span></h3>
 	</ol>
+<h3><p class="text-center">Monto Vencido <span class="label label-danger">{{latePayment}}</span></p></h3>
 <h3><p class="text-center">Deuda Total <span class="label label-danger">{{totalDebt}}</span></p></h3>
+
 <div id="mydiv" style="display:none" align="center">
     <img src="images/urumovil.gif"/>
 </div>
