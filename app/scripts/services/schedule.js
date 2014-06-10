@@ -3,6 +3,6 @@ angular.module('tesisApp')
 	.factory('schedule', ['$resource', function ($resource) {
 		
 	
-		return $resource("http://192.168.80.100/urumovil/slim.php/getSchedule/:id",null,null);
+		return $resource("http://200.35.84.135/slim.php/getSchedule/:id",null,null);
 		
 	}])
