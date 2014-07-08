@@ -5,7 +5,7 @@ angular.module('tesisApp')
         var count = 0;
         var data;
         angular.element('#mydiv').show();
-    	courses.get({
+        courses.get({
             id:window.localStorage.getItem("id")
         }).$promise.then(function(courses){
             console.log('Courses are here');

@@ -38,7 +38,7 @@ angular.module('tesisApp')
       angular.element('#mydiv').hide();
       $('#alertDanger').show("slow");
              setTimeout(function() {
-                $('#alertErr').hide('slow');
+                $('#alertDanger').hide('slow');
             }, 3000);
   	})
     
